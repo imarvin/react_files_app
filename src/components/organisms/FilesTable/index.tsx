@@ -1,3 +1,4 @@
+import { FileRow } from '../FileRow';
 import { Props } from './types';
 
 const FilesTable = ({ files }: Props) => {
@@ -13,15 +14,16 @@ const FilesTable = ({ files }: Props) => {
             <th>Status</th>
           </tr>
           {files.map((file, index) => (
-            <tr key={index}>
-              <td>
-                <input type='checkbox' name='file' value={index} />
-              </td>
-              <td>{file.name}</td>
-              <td>{file.device}</td>
-              <td>{file.path}</td>
-              <td>{file.status}</td>
-            </tr>
+            <FileRow index={index} file={file} />
+            // <tr key={index} className='row'>
+            //   <td>
+            //     <input type='checkbox' name='file' value={index} />
+            //   </td>
+            //   <td>{file.name}</td>
+            //   <td>{file.device}</td>
+            //   <td>{file.path}</td>
+            //   <td>{file.status}</td>
+            // </tr>
           ))}
         </table>
       ) : (
