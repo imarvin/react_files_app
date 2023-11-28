@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FilesContext } from '../../../contexts/FilesContext';
 import { Checkbox } from '../../atoms/Checkbox';
 import download from '../../../assets/download.svg';
@@ -12,11 +12,7 @@ export const FilesHeader = () => {
   }, [selected]);
 
   const handleCheckbox = () => {
-    console.log('select all', selected);
-    console.log('files', files);
-
     if (!checkAll) {
-      console.log('>>UnCheckAll');
       // uncheck all
       setSelected([]);
       files.forEach((file, index) => {
@@ -26,7 +22,6 @@ export const FilesHeader = () => {
       });
       setFiles(files);
     } else {
-      console.log('>>CheckAll');
       // check all if available
       files.forEach((file, index) => {
         if (file.status === 'available') {
@@ -40,7 +35,6 @@ export const FilesHeader = () => {
 
   const handleDownload = () => {
     if (selected.length > 0) {
-      console.log('download all', selected);
       let alertMessage = '';
       selected.forEach((i) => {
         alertMessage += `Device: ${files[i].device}\nPath: ${files[i].path}\n\n`;
@@ -48,10 +42,6 @@ export const FilesHeader = () => {
       alert(alertMessage);
     }
   };
-
-  useEffect(() => {
-    console.log('>> header, selected', selected, Object.keys(selected).length);
-  }, [selected]);
 
   return (
     <>
@@ -61,7 +51,7 @@ export const FilesHeader = () => {
           <span>{selected.length}</span>
         </div>
         <div className='download' onClick={handleDownload}>
-          <img src={download} alt="Download Selected" />
+          <img src={download} alt='Download Selected' />
           Download Selected
         </div>
       </div>

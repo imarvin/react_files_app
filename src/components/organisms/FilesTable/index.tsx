@@ -1,17 +1,10 @@
-import { useEffect, useContext, useState } from 'react';
+import { useContext } from 'react';
 import { FilesContext } from '../../../contexts/FilesContext';
 import { FileRow } from '../FileRow';
 import { FilesHeader } from '../FilesHeader';
-import { Props } from './types';
 
 const FilesTable = () => {
-  //const [selected, setSelected] = useState<number[]>([]);
-  const { files, setFiles, selected, setSelected, isModalOpen, setModalOpen } =
-    useContext(FilesContext);
-
-  useEffect(() => {
-    //console.log('>> first, selected', selected);
-  }, [selected]);
+  const { files } = useContext(FilesContext);
 
   return (
     <div className='wrapper'>
