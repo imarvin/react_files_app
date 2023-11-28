@@ -1,37 +1,42 @@
+import { useEffect, useContext, useState } from 'react';
+import { FilesContext } from '../../../contexts/FilesContext';
 import { FileRow } from '../FileRow';
+import { FilesHeader } from '../FilesHeader';
 import { Props } from './types';
 
-const FilesTable = ({ files }: Props) => {
+const FilesTable = () => {
+  //const [selected, setSelected] = useState<number[]>([]);
+  const { files, setFiles, selected, setSelected, isModalOpen, setModalOpen } =
+    useContext(FilesContext);
+
+  useEffect(() => {
+    //console.log('>> first, selected', selected);
+  }, [selected]);
+
   return (
-    <>
+    <div className='wrapper'>
       {files?.length > 0 ? (
-        <table>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Device</th>
-            <th>Path</th>
-            <th>Status</th>
-          </tr>
-          {files.map((file, index) => (
-            <FileRow index={index} file={file} />
-            // <tr key={index} className='row'>
-            //   <td>
-            //     <input type='checkbox' name='file' value={index} />
-            //   </td>
-            //   <td>{file.name}</td>
-            //   <td>{file.device}</td>
-            //   <td>{file.path}</td>
-            //   <td>{file.status}</td>
-            // </tr>
-          ))}
-        </table>
+        <>
+          <FilesHeader />
+          <table>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Device</th>
+              <th>Path</th>
+              <th>Status</th>
+            </tr>
+            {files.map((file, index) => (
+              <FileRow key={index} index={index} file={file} />
+            ))}
+          </table>
+        </>
       ) : (
         <div className='empty'>
           <p>No files found</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
