@@ -3,6 +3,7 @@ interface iProps {
   disabled?: boolean;
   handleClick: () => void;
   checked?: boolean;
+  indeterminate?: any;
 }
 
 export type { iProps };

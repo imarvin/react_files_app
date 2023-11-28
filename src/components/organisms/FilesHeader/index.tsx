@@ -5,14 +5,16 @@ import download from '../../../assets/download.svg';
 
 export const FilesHeader = () => {
   const [checkAll, setCheckAll] = useState(false);
+  const [indeterminate, setIndeterminate] = useState(false);
   const { files, setFiles, selected, setSelected } = useContext(FilesContext);
 
   useEffect(() => {
-    setCheckAll(!selected.length);
+    setCheckAll(selected.length >= files.length);
+    setIndeterminate(selected.length > 0 && selected.length < files.length);
   }, [selected]);
 
   const handleCheckbox = () => {
-    if (!checkAll) {
+    if (checkAll || indeterminate) {
       // uncheck all
       setSelected([]);
       files.forEach((file, index) => {
@@ -47,8 +49,12 @@ export const FilesHeader = () => {
     <>
       <div className='files-header'>
         <div className='selected'>
-          <Checkbox handleClick={handleCheckbox} checked={!checkAll} /> Selected{' '}
-          <span>{selected.length}</span>
+          <Checkbox
+            handleClick={handleCheckbox}
+            checked={checkAll || indeterminate}
+            indeterminate={indeterminate}
+          />{' '}
+          Selected <span>{selected.length}</span>
         </div>
         <div className='download' onClick={handleDownload}>
           <img src={download} alt='Download Selected' />
