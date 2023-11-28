@@ -1,5 +1,5 @@
 {
-  "name": "files-app",
+  "name": "react-files-app",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -43,7 +43,7 @@
     ]
   },
   "main": "index.js",
-  "repository": "https://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@github.com/imarvin/crowdstrike_files_app.git",
+  "repository": "https://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@github.com/imarvin/react_files_app.git",
   "license": "MIT",
   "devDependencies": {
     "gh-pages": "^6.1.0"
